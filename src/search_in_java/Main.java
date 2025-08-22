@@ -13,7 +13,7 @@ package astarsearch;
 import java.util.*;
 
 public class AStarSearch {
-    // Define the grid, ROWS, and COLS as static fields at the class level
+    
     static int[][] grid = {
         {0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0},
@@ -23,7 +23,7 @@ public class AStarSearch {
     };
     static int ROWS = 5, COLS = 5;
 
-    // Node class defined at the class level
+   
     static class Node implements Comparable<Node> {
         public int x, y;
         public double gCost, hCost;
@@ -56,7 +56,7 @@ public class AStarSearch {
         }
     }
 
-    // A* search algorithm to find the path
+    
     static List<Node> findPath(Node start, Node goal) {
         PriorityQueue<Node> openSet = new PriorityQueue<>();
         Set<Node> closedSet = new HashSet<>();
@@ -86,7 +86,7 @@ public class AStarSearch {
 
                     double tentativeG = current.gCost + 1;
 
-                    // Check if neighbor is already in openSet
+                    
                     Optional<Node> existingNeighbor = openSet.stream()
                             .filter(n -> n.equals(neighbor))
                             .findFirst();
@@ -97,21 +97,21 @@ public class AStarSearch {
                         neighbor.parent = current;
                         openSet.add(neighbor);
                     } else if (tentativeG < existingNeighbor.get().gCost) {
-                        // Update the existing neighbor's properties
+                        
                         Node existing = existingNeighbor.get();
                         existing.gCost = tentativeG;
                         existing.parent = current;
-                        // Remove and re-add to update priority in the PriorityQueue
+                        
                         openSet.remove(existing);
                         openSet.add(existing);
                     }
                 }
             }
         }
-        return null; // No path found
+        return null; 
     }
 
-    // Main method to test the A* algorithm
+    
     public static void main(String[] args) {
         Node start = new Node(0, 0);
         Node goal = new Node(4, 4);
